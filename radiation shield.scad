@@ -50,23 +50,23 @@ module shield_fin(d1=120, angle=45, hole_dia=35, height=18, studs_outscribe=68, 
             translate([0,0,thickness*2]) studs(height=height-thickness*2-overlap, drill_dia=stud_drill_dia, drills=false);
         }
         translate([0,0,-0.1]) cylinder(h=thickness*2+.2, d=hole_dia, center=false);
-        translate([0,0,-0.1]) stud_drills(height=height+.2);
+        translate([0,0,-0.1]) stud_drills(height=height+.2, drill_dia=stud_drill_dia);
     }
 }
 
-module base(d1=120, angle=45, sensor_hole_dia=25, height=18, studs_outscribe=68, stud_drill_dia=5.5, mount_drill=4.2, thickness=1) {
+module base(d1=120, angle=45, sensor_hole_dia=25, height=18, studs_outscribe=68, stud_drill_dia=5.5, mount_drill=4.2, thickness=1, overlap=5) {
     r_inner_outer=d1/2-thickness*2;
     r_inner_inner=r_inner_outer-(height-thickness*2+0.1)*tan(angle);
     difference() {
         union() {
             cylinder(h=thickness*2, r=r_inner_inner, center=false);
             translate([0,0,thickness*2]) studs(height=height-thickness*2, drill_dia=stud_drill_dia, drills=false);
-            translate([0,0,thickness*2]) cylinder(h=height-thickness*4, d=sensor_hole_dia+thickness*11, center=false);
-            translate([0,0,height-thickness*2]) cylinder(h=thickness*4, d=sensor_hole_dia+thickness*7, center=false);
+            translate([0,0,thickness*2]) cylinder(h=height-thickness*3, d=sensor_hole_dia+thickness*11, center=false);
+            translate([0,0,height-thickness]) cylinder(h=thickness+overlap, d=sensor_hole_dia+thickness*7, center=false);
         }
-        translate([0,0,-0.1]) cylinder(h=height+thickness*2+.2, d=sensor_hole_dia, center=false);
-        translate([0,0,-0.1]) stud_drills(height=height+.2);
-        translate([0,0,thickness*2+(height-thickness*4)/2]) rotate([90,0,0]) cylinder(h=sensor_hole_dia+thickness*12, d=mount_drill, center=true);
+        translate([0,0,-0.1]) cylinder(h=height+overlap+.2, d=sensor_hole_dia, center=false);
+        translate([0,0,-0.1]) stud_drills(height=height+.2, drill_dia=stud_drill_dia);
+        translate([0,0,thickness*2+(height-thickness*3)/2]) rotate([90,0,0]) cylinder(h=sensor_hole_dia+thickness*12, d=mount_drill, center=true);
     }
     
 }
@@ -94,5 +94,5 @@ module full_assembly(d1=120, d2=180, angle=45, hole_dia=35, sensor_hole_dia=25, 
 
 //full_assembly();
 shield_fin(d1=120, d2=180, angle=45, hole_dia=35, sensor_hole_dia=25, height=18, studs_outscribe=68, stud_drill_dia=5.5, thickness=1, overlap=1);
-//shield_top(d1=180, angle=45, hole_dia=35, sensor_hole_dia=25, height=18, studs_outscribe=68, stud_drill_dia=5.5, thickness=1, overlap=1);
-//base(d1=120, angle=45, hole_dia=35, sensor_hole_dia=25, height=18, studs_outscribe=68, stud_drill_dia=5.5, thickness=1, overlap=1);
+//shield_top(d1=180, angle=45, hole_dia=35, sensor_hole_dia=25, height=18, studs_outscribe=68, stud_drill_dia=4.2, thickness=1, overlap=1);
+//base(d1=120, angle=45, hole_dia=35, sensor_hole_dia=25, height=18, studs_outscribe=68, stud_drill_dia=5.5, thickness=1, overlap=5);
