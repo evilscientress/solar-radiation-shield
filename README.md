@@ -2,7 +2,7 @@
 
 a 3d printable solar radiation shield inspiered by [micromet's](https://www.thingiverse.com/micromet) [radiation shield](https://www.thingiverse.com/thing:1067700)
 
-![rendered image](radiation shield rendered.png)
+![rendered image](radiation%20shield%20rendered.png)
 
 # License
 
